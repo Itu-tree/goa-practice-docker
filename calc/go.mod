@@ -5,6 +5,23 @@ go 1.17
 require goa.design/goa/v3 v3.5.5
 
 require (
+	github.com/Masterminds/goutils v1.1.1 // indirect
+	github.com/Masterminds/semver v1.5.0 // indirect
+	github.com/Masterminds/sprig v2.22.0+incompatible // indirect
+	github.com/aokoli/goutils v1.1.1 // indirect
+	github.com/envoyproxy/protoc-gen-validate v0.6.7 // indirect
+	github.com/gogo/protobuf v1.3.2 // indirect
+	github.com/huandu/xstrings v1.3.2 // indirect
+	github.com/imdario/mergo v0.3.12 // indirect
+	github.com/mitchellh/copystructure v1.2.0 // indirect
+	github.com/mitchellh/reflectwalk v1.0.2 // indirect
+	github.com/mwitkow/go-proto-validators v0.3.2 // indirect
+	github.com/pseudomuto/protoc-gen-doc v1.5.1 // indirect
+	github.com/pseudomuto/protokit v0.2.1 // indirect
+	golang.org/x/crypto v0.0.0-20220427172511-eb4f295cb31f // indirect
+)
+
+require (
 	github.com/dimfeld/httppath v0.0.0-20170720192232-ee938bf73598 // indirect
 	github.com/dimfeld/httptreemux/v5 v5.4.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
@@ -21,9 +38,9 @@ require (
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/tools v0.1.9 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
-	google.golang.org/genproto v0.0.0-20220303160752-862486edd9cc // indirect
-	google.golang.org/grpc v1.44.0 // indirect
+	google.golang.org/genproto v0.0.0-20220429170224-98d788798c3e // indirect
+	google.golang.org/grpc v1.45.0 // indirect
 	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.2.0 // indirect
-	google.golang.org/protobuf v1.27.1 // indirect
+	google.golang.org/protobuf v1.28.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	)
+)

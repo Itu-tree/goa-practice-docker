@@ -21,3 +21,4 @@ RUN go get github.com/uudashr/gopkgs/v2/cmd/gopkgs \
   github.com/go-delve/delve/cmd/dlv \
   golang.org/x/lint/golint \
   golang.org/x/tools/gopls \
+  github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc \
