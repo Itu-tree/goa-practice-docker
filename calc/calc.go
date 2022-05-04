@@ -19,6 +19,20 @@ func NewCalc(logger *log.Logger) calc.Service {
 
 // Add implements add.
 func (s *calcsrvc) Add(ctx context.Context, p *calc.AddPayload) (res int, err error) {
-	s.logger.Print("calc.add")
 	return p.A + p.B, nil
+}
+
+// Add implements sub.
+func (s *calcsrvc) Sub(ctx context.Context, p *calc.SubPayload) (res int, err error) {
+	return p.A - p.B, nil
+}
+
+// Add implements mul.
+func (s *calcsrvc) Mul(ctx context.Context, p *calc.MulPayload) (res int, err error) {
+	return p.A * p.B, nil
+}
+
+// Divide returns the integral division of two integers.
+func (s *calcsrvc) Divide(ctx context.Context, p *calc.DividePayload) (res int, err error) {
+	return p.A / p.B, nil
 }

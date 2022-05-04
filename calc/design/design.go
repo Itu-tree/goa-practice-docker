@@ -54,4 +54,78 @@ var _ = Service("calc", func() {
 			Response(CodeOK) // レスポンスのステータスは CodeOK を返す
 		})
 	})
+
+	Method("sub", func() {
+		// input
+		Payload(func() {
+			Field(1, "a", Int, "Left operand")
+			Field(2, "b", Int, "Right operand")
+			Required("a", "b")
+		})
+
+		// output
+		Result(Int)
+
+		// HTTP トランスポート用の定義
+		HTTP(func() {
+			GET("/sub/{a}/{b}") // GET エンドポイント
+			Response(StatusOK)  // レスポンスのステータスは Status OK = 200 を返す
+		})
+
+		// GRPC トランスポート用の定義
+		GRPC(func() {
+			Response(CodeOK) // レスポンスのステータスは CodeOK を返す
+		})
+	})
+
+	Method("mul", func() {
+		// input
+		Payload(func() {
+			Field(1, "a", Int, "Left operand")
+			Field(2, "b", Int, "Right operand")
+			Required("a", "b")
+		})
+		// output
+		Result(Int)
+
+		// HTTP トランスポート用の定義
+		HTTP(func() {
+			GET("/mul/{a}/{b}") // GET エンドポイント
+			Response(StatusOK)  // レスポンスのステータスは Status OK = 200 を返す
+		})
+
+		// GRPC トランスポート用の定義
+		GRPC(func() {
+			Response(CodeOK) // レスポンスのステータスは CodeOK を返す
+		})
+
+	})
+
+	//
+	Method("divide", func() {
+		Description("Divide returns the integral division of two integers.")
+		// input
+		Payload(func() {
+			Field(1, "a", Int, "Left operand")
+			Field(2, "b", Int, "Right operand")
+			Required("a", "b")
+		})
+		// output
+		Result(Int)
+
+		// error
+		Error("DivByZero")
+
+		// HTTP トランスポートへの割り当て
+		HTTP(func() {
+			GET("/div/{a}/{b}")                     // 入力
+			Response(StatusOK)                      // 正常系
+			Response("DivByZero", StatusBadRequest) // エラー
+		})
+
+		GRPC(func() {
+			Response(CodeOK)
+			Response("DivByZero", CodeInvalidArgument)
+		})
+	})
 })

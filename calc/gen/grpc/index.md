@@ -6,6 +6,12 @@
 - [gen/grpc/calc/pb/goadesign_goagen_calc.proto](#gen_grpc_calc_pb_goadesign_goagen_calc-proto)
     - [AddRequest](#calc-AddRequest)
     - [AddResponse](#calc-AddResponse)
+    - [DivideRequest](#calc-DivideRequest)
+    - [DivideResponse](#calc-DivideResponse)
+    - [MulRequest](#calc-MulRequest)
+    - [MulResponse](#calc-MulResponse)
+    - [SubRequest](#calc-SubRequest)
+    - [SubResponse](#calc-SubResponse)
   
     - [Calc](#calc-Calc)
   
@@ -50,6 +56,99 @@
 
 
 
+
+<a name="calc-DivideRequest"></a>
+
+### DivideRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| a | [sint32](#sint32) |  | Left operand |
+| b | [sint32](#sint32) |  | Right operand |
+
+
+
+
+
+
+<a name="calc-DivideResponse"></a>
+
+### DivideResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| field | [sint32](#sint32) |  |  |
+
+
+
+
+
+
+<a name="calc-MulRequest"></a>
+
+### MulRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| a | [sint32](#sint32) |  | Left operand |
+| b | [sint32](#sint32) |  | Right operand |
+
+
+
+
+
+
+<a name="calc-MulResponse"></a>
+
+### MulResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| field | [sint32](#sint32) |  |  |
+
+
+
+
+
+
+<a name="calc-SubRequest"></a>
+
+### SubRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| a | [sint32](#sint32) |  | Left operand |
+| b | [sint32](#sint32) |  | Right operand |
+
+
+
+
+
+
+<a name="calc-SubResponse"></a>
+
+### SubResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| field | [sint32](#sint32) |  |  |
+
+
+
+
+
  
 
  
@@ -65,6 +164,9 @@ The calc service performs operations on numbers.
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | Add | [AddRequest](#calc-AddRequest) | [AddResponse](#calc-AddResponse) | Add implements add. |
+| Sub | [SubRequest](#calc-SubRequest) | [SubResponse](#calc-SubResponse) | Sub implements sub. |
+| Mul | [MulRequest](#calc-MulRequest) | [MulResponse](#calc-MulResponse) | Mul implements mul. |
+| Divide | [DivideRequest](#calc-DivideRequest) | [DivideResponse](#calc-DivideResponse) | Divide returns the integral division of two integers. |
 
  
 

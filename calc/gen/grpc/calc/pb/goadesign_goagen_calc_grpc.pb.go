@@ -24,6 +24,12 @@ const _ = grpc.SupportPackageIsVersion7
 type CalcClient interface {
 	// Add implements add.
 	Add(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error)
+	// Sub implements sub.
+	Sub(ctx context.Context, in *SubRequest, opts ...grpc.CallOption) (*SubResponse, error)
+	// Mul implements mul.
+	Mul(ctx context.Context, in *MulRequest, opts ...grpc.CallOption) (*MulResponse, error)
+	// Divide returns the integral division of two integers.
+	Divide(ctx context.Context, in *DivideRequest, opts ...grpc.CallOption) (*DivideResponse, error)
 }
 
 type calcClient struct {
@@ -43,12 +49,45 @@ func (c *calcClient) Add(ctx context.Context, in *AddRequest, opts ...grpc.CallO
 	return out, nil
 }
 
+func (c *calcClient) Sub(ctx context.Context, in *SubRequest, opts ...grpc.CallOption) (*SubResponse, error) {
+	out := new(SubResponse)
+	err := c.cc.Invoke(ctx, "/calc.Calc/Sub", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *calcClient) Mul(ctx context.Context, in *MulRequest, opts ...grpc.CallOption) (*MulResponse, error) {
+	out := new(MulResponse)
+	err := c.cc.Invoke(ctx, "/calc.Calc/Mul", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *calcClient) Divide(ctx context.Context, in *DivideRequest, opts ...grpc.CallOption) (*DivideResponse, error) {
+	out := new(DivideResponse)
+	err := c.cc.Invoke(ctx, "/calc.Calc/Divide", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CalcServer is the server API for Calc service.
 // All implementations must embed UnimplementedCalcServer
 // for forward compatibility
 type CalcServer interface {
 	// Add implements add.
 	Add(context.Context, *AddRequest) (*AddResponse, error)
+	// Sub implements sub.
+	Sub(context.Context, *SubRequest) (*SubResponse, error)
+	// Mul implements mul.
+	Mul(context.Context, *MulRequest) (*MulResponse, error)
+	// Divide returns the integral division of two integers.
+	Divide(context.Context, *DivideRequest) (*DivideResponse, error)
 	mustEmbedUnimplementedCalcServer()
 }
 
@@ -58,6 +97,15 @@ type UnimplementedCalcServer struct {
 
 func (UnimplementedCalcServer) Add(context.Context, *AddRequest) (*AddResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
+}
+func (UnimplementedCalcServer) Sub(context.Context, *SubRequest) (*SubResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Sub not implemented")
+}
+func (UnimplementedCalcServer) Mul(context.Context, *MulRequest) (*MulResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Mul not implemented")
+}
+func (UnimplementedCalcServer) Divide(context.Context, *DivideRequest) (*DivideResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Divide not implemented")
 }
 func (UnimplementedCalcServer) mustEmbedUnimplementedCalcServer() {}
 
@@ -90,6 +138,60 @@ func _Calc_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Calc_Sub_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SubRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CalcServer).Sub(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/calc.Calc/Sub",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CalcServer).Sub(ctx, req.(*SubRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Calc_Mul_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MulRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CalcServer).Mul(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/calc.Calc/Mul",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CalcServer).Mul(ctx, req.(*MulRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Calc_Divide_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DivideRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CalcServer).Divide(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/calc.Calc/Divide",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CalcServer).Divide(ctx, req.(*DivideRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Calc_ServiceDesc is the grpc.ServiceDesc for Calc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -100,6 +202,18 @@ var Calc_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Add",
 			Handler:    _Calc_Add_Handler,
+		},
+		{
+			MethodName: "Sub",
+			Handler:    _Calc_Sub_Handler,
+		},
+		{
+			MethodName: "Mul",
+			Handler:    _Calc_Mul_Handler,
+		},
+		{
+			MethodName: "Divide",
+			Handler:    _Calc_Divide_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

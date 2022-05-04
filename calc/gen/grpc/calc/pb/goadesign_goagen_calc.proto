@@ -1,4 +1,4 @@
-// Code generated with goa v3.5.5, DO NOT EDIT.
+// Code generated with goa v3.7.3, DO NOT EDIT.
 //
 // calc protocol buffer definition
 //
@@ -15,6 +15,12 @@ option go_package = "/calcpb";
 service Calc {
 	// Add implements add.
 	rpc Add (AddRequest) returns (AddResponse);
+	// Sub implements sub.
+	rpc Sub (SubRequest) returns (SubResponse);
+	// Mul implements mul.
+	rpc Mul (MulRequest) returns (MulResponse);
+	// Divide returns the integral division of two integers.
+	rpc Divide (DivideRequest) returns (DivideResponse);
 }
 
 message AddRequest {
@@ -25,5 +31,38 @@ message AddRequest {
 }
 
 message AddResponse {
+	sint32 field = 1;
+}
+
+message SubRequest {
+	// Left operand
+	sint32 a = 1;
+	// Right operand
+	sint32 b = 2;
+}
+
+message SubResponse {
+	sint32 field = 1;
+}
+
+message MulRequest {
+	// Left operand
+	sint32 a = 1;
+	// Right operand
+	sint32 b = 2;
+}
+
+message MulResponse {
+	sint32 field = 1;
+}
+
+message DivideRequest {
+	// Left operand
+	sint32 a = 1;
+	// Right operand
+	sint32 b = 2;
+}
+
+message DivideResponse {
 	sint32 field = 1;
 }
